@@ -47,6 +47,13 @@ knotted1 <- unite(knotted, "PDB_1", pdb, X2, sep = "_")
 col: columna a separar. Aquí separamos por aparición de "_" en 3 nuevas columnas.
 df <- separate(df,col, c("cl1","cl2","cl3"),"_")
 
+#Crear un sub-dataframe a partir de un df, que tenga ciertas características, en este caso, se crea un df que agrega cada fila que tenga en la columna cl1 un 1 y en la cl2 un
+#valor menor a 100.
+A<-subset(df,df$cl1==1 & df$cl2<100)
+
+#Unir 2 df por una palabra clave
+df3 <- left_join(df1,df2,key="A")
+
 #Exportar dataframe a un excel df=nombre del dataframe    file=nombre que queres que tenga el archivo.
 write.csv(df, file="codnas_length.csv")
 
