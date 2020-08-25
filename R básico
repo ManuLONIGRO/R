@@ -1,0 +1,50 @@
+db: dataframe, cl: columna
+
+#Seleccionar un dato de cierta $columna y [fila]
+df$cl[fila]
+
+#seleccionar todas las filas de la columna 2. Lo que va entre [] se lee [fila,columna].
+df[,2]
+
+#Cambiar nombre de columna. [1] indica la posición de la columna a la cual le queremos cambiar el nombre. 
+colnames(df)[1]<-"nuevo_nombre"
+
+#Eliminar columna
+df$cl<- NULL
+
+#Agregar una columna con un mismo valor para todas las filas. La nueva columna es clase y el valor es knotted.
+df$cl_nueva <- "valor para cada fila"
+
+#Eliminar el dato "A" junto con todas las columnas de la misma fila.  
+df2<- df[df$cl!="A",]
+
+#Eliminar los na de cierta columna
+df2<- df[!is.na(db$cl),]
+
+#nombrar los NA  df= codnas_taxon   columna=taxon    Others=nuevo nombre
+codnas_taxon[["taxon"]][is.na(codnas_taxon[["taxon"]])] <-"Others"
+
+#Hacer SUMMARY en una columna clasificando por condicion. La condición la da la característica que elijamos de otra columna.Summary nos dará los valores de media, mediana,
+#cuartiles, etc. Por supuesto que cl debe contener sólo números.
+summary(df$cl[df$condición=="xxxx"])
+
+#Contar repeticiones de un caracter "_". Agrega lo que cuenta en la misma fila, pero en la columna cl2. En este caso cuenta "_" que aprecen en cl1 y agrega el valor en cl2
+df$cl2<- apply(df,cl1,str_count,pattern="_")
+
+#Contar repeticiones. Cargar librería "dplyr". Tenemos dos opciones. En el primer caso contamos las repeticiones. Nos va a imprimir el resultado. En el segundo casi, depositamos
+cada valor en df2, y le indicamos que utilice la librería plyr ya que me ha dado error si no lo hacemos.
+count(df1$cl)
+df2<- plyr::count(cath$dom)
+
+#Cargar librería "tidyr". Unir columnas por un string. "nueva_col"= nombre de nueva columna | cl1 y cl2= columnas a unir | sep= separador, en este caso un "_"
+df2 <- unite(df1, "nueva_col", cl1, cl2, sep = "_")
+knotted1 <- unite(knotted, "PDB_1", pdb, X2, sep = "_")
+
+#cargar librería "tidyr". CASO CONTRARIO AL ANTERIOR. Separar una columna por un string, en la cantidad de columnas que se desee, según la cantidad de apariciones del string.
+col: columna a separar. Aquí separamos por aparición de "_" en 3 nuevas columnas.
+df <- separate(df,col, c("cl1","cl2","cl3"),"_")
+
+#Exportar dataframe a un excel df=nombre del dataframe    file=nombre que queres que tenga el archivo.
+write.csv(df, file="codnas_length.csv")
+
+
