@@ -15,6 +15,9 @@ df$cl<- NULL
 #Agregar una columna con un mismo valor para todas las filas. La nueva columna es clase y el valor es knotted.
 df$cl_nueva <- "valor para cada fila"
 
+#Crear una columna "CATEGORIA" para clasificar otra "cl1"
+df$categoria[df$cl1==2]<-"valor que quiero poner en la nueva columna"
+
 #Eliminar el dato "A" junto con todas las columnas de la misma fila.  
 df2<- df[df$cl!="A",]
 
@@ -46,5 +49,6 @@ df <- separate(df,col, c("cl1","cl2","cl3"),"_")
 
 #Exportar dataframe a un excel df=nombre del dataframe    file=nombre que queres que tenga el archivo.
 write.csv(df, file="codnas_length.csv")
+
 
 
