@@ -1,0 +1,13 @@
+#Una vez que graficamos con ggplot, podemos modificar ciertos parámetros del gráfico a gusto. Aquí unos pocos:
+
+#letra negrita, sin leyenda.
++ theme(axis.title = element_text(face = "bold"),strip.text = element_text(face = "bold"),legend.position = "none")
+
+#poner en negrita los titulos de los ejes
++ theme(axis.title = element_text(face = "bold"))
+
+#poner en negrita los labels
++ theme(strip.text = element_text(face = "bold"))
+
+#agrandar titulos de los ejes
++ theme(axis.title = element_text(size = rel(1.3)))
