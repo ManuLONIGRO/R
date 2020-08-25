@@ -11,3 +11,21 @@
 
 #agrandar titulos de los ejes
 + theme(axis.title = element_text(size = rel(1.3)))
+
+#Cambiar nombre a la leyenda. Le puse Class. Si no es un continuo probar con colour en vez de fill
++ labs(x = "RMSD maximum [Å]", y="Density",fill="Class")
+
+#Eliminar leyenda.
+........+ theme(legend.position = "none")
+
+#Usar un tema en la legenda.
+ + theme(legend.background = element_rect(fill="lightblue", size=0.5, linetype="solid", colour ="darkblue"))
+
+#modificar el orden en el grafico (se hace antes de graficar) SUper util si haces un facet_grid o si graficas varios grupos superpuestos, y querés adelante uno en particular.
+codnas_pairs_max_2015$Clase <- factor(codnas_pairs_max_2015$Clase, levels= c("Alfa","Beta","Alfa-Beta","Few SS"))
+
+#Graficar los valores de una columna clasificando por otra. 
+ggplot(df,aes(x= categoria, fill=categoria)) + geom_bar(col=1, width = 0.7) + scale_fill_brewer() + labs(x= "Numero de conformeros", y= "Cantidad de proteinas", title= "Cantidad de conformeros por proteina")
+
+#Graficar pero obviar los na.
+ggplot(na.omit(df[,c("cl1", "cl2")]), aes(cl1, fill=cl2)) + geom_histogram().................
